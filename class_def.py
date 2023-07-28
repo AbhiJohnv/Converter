@@ -73,14 +73,43 @@ class Methods:
         null = ""
         dash = null.center(55, "-")
         Colors.light_blue("\n     Enter decimal number: ")
-        number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
-        octal_digits = list(map(int, str(number)))
+        octal = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        octal_digits = list(map(int, str(octal)))
         binary_digits = [format(digit, "03b") for digit in octal_digits]
         binary_result = "".join(binary_digits)
         Colors.light_blue("\n" + "     " + dash)
         print(
             colr().hex("#6666ff", "     |", rgb_mode=True),
             colr().hex("#ff0000", binary_result.center(50), rgb_mode=True),
+            colr().hex("#6666ff", " |", rgb_mode=True),
+        )
+        Colors.light_blue("     " + dash)
+
+    def decimal_to_octal():
+        null = ""
+        dash = null.center(55, "-")
+        Colors.light_blue("\n     Enter decimal number: ")
+        decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        show_decimal = decimal_number
+        decimal_number = int(decimal_number) 
+        if decimal_number == 0:
+            Colors.red (
+                "0"  # Special case for input 0, as its octal representation is also 0
+            )
+
+        octal_digits = []
+        while decimal_number > 0:
+            quotient, remainder = divmod(decimal_number, 8)
+            octal_digits.insert(
+                0, str(remainder)
+            )  # Insert the remainder at the beginning of the list
+            decimal_number = quotient
+
+        octal_result= "".join(octal_digits)
+        Colors.light_blue("\n" + "     " + dash)
+        print(
+            colr().hex("#6666ff", "     |", rgb_mode=True),
+            colr().hex("#ff0000",octal_result.center(50), rgb_mode=True),
             colr().hex("#6666ff", " |", rgb_mode=True),
         )
         Colors.light_blue("     " + dash)
