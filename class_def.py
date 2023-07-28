@@ -91,9 +91,9 @@ class Methods:
         Colors.light_blue("\n     Enter decimal number: ")
         decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
         show_decimal = decimal_number
-        decimal_number = int(decimal_number) 
+        decimal_number = int(decimal_number)
         if decimal_number == 0:
-            Colors.red (
+            Colors.red(
                 "0"  # Special case for input 0, as its octal representation is also 0
             )
 
@@ -105,11 +105,39 @@ class Methods:
             )  # Insert the remainder at the beginning of the list
             decimal_number = quotient
 
-        octal_result= "".join(octal_digits)
+        octal_result = "".join(octal_digits)
         Colors.light_blue("\n" + "     " + dash)
         print(
             colr().hex("#6666ff", "     |", rgb_mode=True),
-            colr().hex("#ff0000",octal_result.center(50), rgb_mode=True),
+            colr().hex("#ff0000", octal_result.center(50), rgb_mode=True),
+            colr().hex("#6666ff", " |", rgb_mode=True),
+        )
+        Colors.light_blue("     " + dash)
+
+    def decimal_to_binary():
+        null = ""
+        dash = null.center(55, "-")
+        Colors.light_blue("\n     Enter decimal number: ")
+        decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        show_decimal = decimal_number
+        decimal_number = int(decimal_number)
+        if decimal_number == 0:
+            Colors.red(
+                "0"  # Special case for input 0, as its octal representation is also 0
+            )
+        binary_digits = []
+        while decimal_number > 0:
+            quotient, remainder = divmod(decimal_number, 2)
+            binary_digits.insert(
+                0, str(remainder)
+            )  # Insert the remainder at the beginning of the list
+            decimal_number = quotient
+
+        binary_result = "".join(binary_digits)
+        Colors.light_blue("\n" + "     " + dash)
+        print(
+            colr().hex("#6666ff", "     |", rgb_mode=True),
+            colr().hex("#ff0000", binary_result.center(50), rgb_mode=True),
             colr().hex("#6666ff", " |", rgb_mode=True),
         )
         Colors.light_blue("     " + dash)

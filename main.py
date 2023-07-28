@@ -68,6 +68,10 @@ def main_choice():
         Methods.decimal_to_octal()
         sleep(0.8)
         main_choice()
+    elif choice == "3":
+        Methods.decimal_to_binary()
+        sleep(0.8)
+        main_choice()
     elif choice == "8":
         Operator.exit()
 
