@@ -119,7 +119,6 @@ class Methods:
         dash = null.center(55, "-")
         Colors.light_blue("\n     Enter decimal number: ")
         decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
-        show_decimal = decimal_number
         decimal_number = int(decimal_number)
         if decimal_number == 0:
             Colors.red(
@@ -138,6 +137,26 @@ class Methods:
         print(
             colr().hex("#6666ff", "     |", rgb_mode=True),
             colr().hex("#ff0000", binary_result.center(50), rgb_mode=True),
+            colr().hex("#6666ff", " |", rgb_mode=True),
+        )
+        Colors.light_blue("     " + dash)
+    def binary_to_decimal():
+        null = ""
+        dash = null.center(55, "-")
+        Colors.light_blue("\n     Enter decimal number: ")
+        binary_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        decimal_number = 0
+
+        # Iterate over the binary digits in reverse order
+        for i, bit in enumerate(reversed(binary_number)):
+            if bit == '1':
+                decimal_number += 2**i
+                
+        decimal_result = str(decimal_number)
+        Colors.light_blue("\n" + "     " + dash)
+        print(
+            colr().hex("#6666ff", "     |", rgb_mode=True),
+            colr().hex("#ff0000", decimal_result.center(50), rgb_mode=True),
             colr().hex("#6666ff", " |", rgb_mode=True),
         )
         Colors.light_blue("     " + dash)

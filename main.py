@@ -72,6 +72,10 @@ def main_choice():
         Methods.decimal_to_binary()
         sleep(0.8)
         main_choice()
+    elif choice == "4":
+        Methods.binary_to_decimal()
+        sleep(0.8)
+        main_choice()
     elif choice == "8":
         Operator.exit()
 
