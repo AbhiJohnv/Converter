@@ -67,130 +67,161 @@ class Operator:
     def exit():
         Colors.red("\n     You exited")
 
+    def invalid():
+        print(
+            colr().hex(
+                "#ff8e35",
+                """                        (__) 
+                        (oo) 
+                  /------\/ 
+                 / |    ||   
+                *  /\---/\ 
+                   ~~   ~~   
+            """,
+                rgb_mode=True,
+            ),
+            colr().hex("#ff0000", "...invalid input...", rgb_mode=True),
+        )
+
 
 class Methods:
     def octal_binary():
         null = ""
-        dash = null.center(55, "-")
+        dash = null.center(58, "-")
         Colors.light_blue("\n     Enter decimal number: ")
         octal = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
-        octal_digits = list(map(int, str(octal)))
-        binary_digits = [format(digit, "03b") for digit in octal_digits]
-        binary_result = "".join(binary_digits)
-        Colors.light_blue("\n" + "     " + dash)
-        print(
-            colr().hex("#6666ff", "     |", rgb_mode=True),
-            colr().hex("#ff0000", binary_result.center(50), rgb_mode=True),
-            colr().hex("#6666ff", " |", rgb_mode=True),
-        )
-        Colors.light_blue("     " + dash)
+        try:
+            octal_digits = list(map(int, str(octal)))
+            binary_digits = [format(digit, "03b") for digit in octal_digits]
+            binary_result = "".join(binary_digits)
+            Colors.light_blue("\n" + "     " + dash)
+            binary = f"      ({binary_result})2"
+            Colors.red(f"{binary.center(60)}")
+            Colors.light_blue("     " + dash)
+        except ValueError:
+            Colors.light_blue("\n" + "     " + dash)
+            error = "      Error: Invalid octal input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)
 
     def decimal_to_octal():
         null = ""
-        dash = null.center(55, "-")
+        dash = null.center(58, "-")
         Colors.light_blue("\n     Enter decimal number: ")
         decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
         show_decimal = decimal_number
-        decimal_number = int(decimal_number)
-        if decimal_number == 0:
-            Colors.red(
-                "0"  # Special case for input 0, as its octal representation is also 0
-            )
+        try:
+            decimal_number = int(decimal_number)
+            if decimal_number == 0:
+                Colors.red(
+                    "0"  # Special case for input 0, as its octal representation is also 0
+                )
 
-        octal_digits = []
-        while decimal_number > 0:
-            quotient, remainder = divmod(decimal_number, 8)
-            octal_digits.insert(
-                0, str(remainder)
-            )  # Insert the remainder at the beginning of the list
-            decimal_number = quotient
+            octal_digits = []
+            while decimal_number > 0:
+                quotient, remainder = divmod(decimal_number, 8)
+                octal_digits.insert(
+                    0, str(remainder)
+                )  # Insert the remainder at the beginning of the list
+                decimal_number = quotient
 
-        octal_result = "".join(octal_digits)
-        Colors.light_blue("\n" + "     " + dash)
-        print(
-            colr().hex("#6666ff", "     |", rgb_mode=True),
-            colr().hex("#ff0000", octal_result.center(50), rgb_mode=True),
-            colr().hex("#6666ff", " |", rgb_mode=True),
-        )
-        Colors.light_blue("     " + dash)
+            octal_result = "".join(octal_digits)
+            Colors.light_blue("\n" + "     " + dash)
+            octal = f"      ({octal_result})8"
+            Colors.red(f"{octal.center(60)}")
+            Colors.light_blue("     " + dash)
+        except ValueError:
+            Colors.light_blue("\n" + "     " + dash)
+            error = "Error: Invalid decimal input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)
 
     def decimal_to_binary():
         null = ""
-        dash = null.center(55, "-")
+        dash = null.center(58, "-")
         Colors.light_blue("\n     Enter decimal number: ")
         decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
         decimal_number = int(decimal_number)
-        if decimal_number == 0:
-            Colors.red(
-                "0"  # Special case for input 0, as its octal representation is also 0
-            )
-        binary_digits = []
-        while decimal_number > 0:
-            quotient, remainder = divmod(decimal_number, 2)
-            binary_digits.insert(
-                0, str(remainder)
-            )  # Insert the remainder at the beginning of the list
-            decimal_number = quotient
+        try:
+            if decimal_number == 0:
+                Colors.red(
+                    "0"  # Special case for input 0, as its octal representation is also 0
+                )
+            binary_digits = []
+            while decimal_number > 0:
+                quotient, remainder = divmod(decimal_number, 2)
+                binary_digits.insert(
+                    0, str(remainder)
+                )  # Insert the remainder at the beginning of the list
+                decimal_number = quotient
 
-        binary_result = "".join(binary_digits)
-        Colors.light_blue("\n" + "     " + dash)
-        print(
-            colr().hex("#6666ff", "     |", rgb_mode=True),
-            colr().hex("#ff0000", binary_result.center(50), rgb_mode=True),
-            colr().hex("#6666ff", " |", rgb_mode=True),
-        )
-        Colors.light_blue("     " + dash)
+            binary_result = "".join(binary_digits)
+            Colors.light_blue("\n" + "     " + dash)
+            binary = f"      ({binary_result})2"
+            Colors.red(f"{binary.center(60)}")
+            Colors.light_blue("     " + dash)
+        except ValueError:
+            Colors.light_blue("\n" + "     " + dash)
+            error = "Error: Invalid decimal input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)
 
     def binary_to_decimal():
         null = ""
-        dash = null.center(55, "-")
+        dash = null.center(58, "-")
         Colors.light_blue("\n     Enter decimal number: ")
         binary_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
-        decimal_number = 0
+        try:
+            decimal_number = 0
 
-        # Iterate over the binary digits in reverse order
-        for i, bit in enumerate(reversed(binary_number)):
-            if bit == "1":
-                decimal_number += 2**i
+            # Iterate over the binary digits in reverse order
+            for i, bit in enumerate(reversed(binary_number)):
+                if bit == "1":
+                    decimal_number += 2**i
 
-        decimal_result = str(decimal_number)
-        Colors.light_blue("\n" + "     " + dash)
-        print(
-            colr().hex("#6666ff", "     |", rgb_mode=True),
-            colr().hex("#ff0000", decimal_result.center(50), rgb_mode=True),
-            colr().hex("#6666ff", " |", rgb_mode=True),
-        )
-        Colors.light_blue("     " + dash)
+            decimal_result = str(decimal_number)
+            Colors.light_blue("\n" + "     " + dash)
+            decimal = f"      ({decimal_result})2"
+            Colors.red(f"{decimal.center(60)}")
+            Colors.light_blue("     " + dash)
+        except ValueError:
+            Colors.light_blue("\n" + "     " + dash)
+            error = "Error: Invalid binary input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)
 
     def decimal_to_hexadecimal():
         null = ""
-        dash = null.center(55, "-")
+        dash = null.center(58, "-")
         Colors.light_blue("\n     Enter decimal number: ")
         decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
-        decimal_number = int(decimal_number)
-        if decimal_number == 0:
-            Colors.red(
-                "0"  # Special case for input 0, as its octal representation is also 0
-            )
-        hex_digits = "0123456789ABCDEF"
-        hexadecimal_string = ""
+        try:
+            decimal_number = int(decimal_number)
+            if decimal_number == 0:
+                Colors.red(
+                    "0"  # Special case for input 0, as its octal representation is also 0
+                )
+            hex_digits = "0123456789ABCDEF"
+            hexadecimal_string = ""
 
-        while decimal_number > 0:
-            remainder = decimal_number % 16
-            hexadecimal_string = hex_digits[remainder] + hexadecimal_string
-            decimal_number //= 16
-        Colors.light_blue("\n" + "     " + dash)
-        print(
-            colr().hex("#6666ff", "     |", rgb_mode=True),
-            colr().hex("#ff0000", hexadecimal_string.center(50), rgb_mode=True),
-            colr().hex("#6666ff", " |", rgb_mode=True),
-        )
-        Colors.light_blue("     " + dash)
+            while decimal_number > 0:
+                remainder = decimal_number % 16
+                hexadecimal_string = hex_digits[remainder] + hexadecimal_string
+                decimal_number //= 16
+            Colors.light_blue("\n" + "     " + dash)
+            hexadecimal = f"      ({hexadecimal_string})16"
+            Colors.red(f"{hexadecimal.center(60)}")
+            Colors.light_blue("     " + dash)
+        except ValueError:
+            Colors.light_blue("\n" + "     " + dash)
+            error = "Error: Invalid decimal input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)
 
     def hex_to_binary():
         null = ""
-        dash = null.center(55, "-")
-        Colors.light_blue("\n     Enter decimal number: ")
+        dash = null.center(58, "-")
+        Colors.light_blue("\n     Enter hexadecimal number: ")
         hex_string = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
         hex_string = hex_string.upper()
         try:
@@ -200,12 +231,40 @@ class Methods:
             ]
             binary_string = "".join(binary_digits)
             Colors.light_blue("\n" + "     " + dash)
-            binary = f"({binary_string})2"
-            print(
-                colr().hex("#6666ff", "     |", rgb_mode=True),
-                colr().hex("#ff0000", binary.center(50), rgb_mode=True),
-                colr().hex("#6666ff", " |", rgb_mode=True),
-            )
-            Colors.light_blue("     " + dash)   
+            binary = f"      ({binary_string})2"
+            Colors.red(f"{binary.center(60)}")
+            Colors.light_blue("     " + dash)
         except ValueError:
-            Colors.red(" \n     Error: Invalid hexadecimal input! \n")
+            Colors.light_blue("\n" + "     " + dash)
+            error = "Error: Invalid hexadecimal input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)
+
+    def decimal_float_binary():
+        null = ""
+        dash = null.center(58, "-")
+        Colors.light_blue("\n     Enter decimal number: ")
+        decimal_fraction = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        decimal_fraction = float(decimal_fraction)
+        try:
+            integral_part = int(decimal_fraction)
+            fractional_part = decimal_fraction - integral_part
+
+            integral_binary = bin(integral_part)[2:]
+
+            fractional_binary = ""
+            while fractional_part > 0:
+                fractional_part *= 2
+                bit = int(fractional_part)
+                fractional_binary += str(bit)
+                fractional_part -= bit
+            binary_string = f"{integral_binary}.{fractional_binary}"
+            Colors.light_blue("\n" + "     " + dash)
+            binary = f"      ({binary_string})2"
+            Colors.red(f"{binary.center(60)}")
+            Colors.light_blue("     " + dash)
+        except ValueError:
+            Colors.light_blue("\n" + "     " + dash)
+            error = "Error: Invalid float decimal input!"
+            Colors.red(f"{error.center(60)}")
+            Colors.light_blue("     " + dash)

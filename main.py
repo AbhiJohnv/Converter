@@ -84,8 +84,14 @@ def main_choice():
         Methods.hex_to_binary()
         sleep(0.8)
         main_choice()
+    elif choice == "7":
+        Methods.decimal_float_binary()
+        sleep(0.8)
+        main_choice()
     elif choice == "8":
         Operator.exit()
+    else:
+        Operator.invalid()
 
 
 main_choice()
