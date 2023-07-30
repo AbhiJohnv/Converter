@@ -76,6 +76,11 @@ def main_choice():
         Methods.binary_to_decimal()
         sleep(0.8)
         main_choice()
+    elif choice == "5":
+        Methods.decimal_to_hexadecimal()
+        sleep(0.8)
+        main_choice()
+
     elif choice == "8":
         Operator.exit()
 

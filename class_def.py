@@ -140,6 +140,7 @@ class Methods:
             colr().hex("#6666ff", " |", rgb_mode=True),
         )
         Colors.light_blue("     " + dash)
+
     def binary_to_decimal():
         null = ""
         dash = null.center(55, "-")
@@ -149,14 +150,39 @@ class Methods:
 
         # Iterate over the binary digits in reverse order
         for i, bit in enumerate(reversed(binary_number)):
-            if bit == '1':
+            if bit == "1":
                 decimal_number += 2**i
-                
+
         decimal_result = str(decimal_number)
         Colors.light_blue("\n" + "     " + dash)
         print(
             colr().hex("#6666ff", "     |", rgb_mode=True),
             colr().hex("#ff0000", decimal_result.center(50), rgb_mode=True),
+            colr().hex("#6666ff", " |", rgb_mode=True),
+        )
+        Colors.light_blue("     " + dash)
+
+    def decimal_to_hexadecimal():
+        null = ""
+        dash = null.center(55, "-")
+        Colors.light_blue("\n     Enter decimal number: ")
+        decimal_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        decimal_number = int(decimal_number)
+        if decimal_number == 0:
+            Colors.red(
+                "0"  # Special case for input 0, as its octal representation is also 0
+            )
+        hex_digits = "0123456789ABCDEF"
+        hexadecimal_string = ""
+
+        while decimal_number > 0:
+            remainder = decimal_number % 16
+            hexadecimal_string = hex_digits[remainder] + hexadecimal_string
+            decimal_number //= 16
+        Colors.light_blue("\n" + "     " + dash)
+        print(
+            colr().hex("#6666ff", "     |", rgb_mode=True),
+            colr().hex("#ff0000", hexadecimal_string.center(50), rgb_mode=True),
             colr().hex("#6666ff", " |", rgb_mode=True),
         )
         Colors.light_blue("     " + dash)
