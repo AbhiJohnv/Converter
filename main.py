@@ -80,7 +80,10 @@ def main_choice():
         Methods.decimal_to_hexadecimal()
         sleep(0.8)
         main_choice()
-
+    elif choice == "6":
+        Methods.hex_to_binary()
+        sleep(0.8)
+        main_choice()
     elif choice == "8":
         Operator.exit()
 

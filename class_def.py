@@ -186,3 +186,26 @@ class Methods:
             colr().hex("#6666ff", " |", rgb_mode=True),
         )
         Colors.light_blue("     " + dash)
+
+    def hex_to_binary():
+        null = ""
+        dash = null.center(55, "-")
+        Colors.light_blue("\n     Enter decimal number: ")
+        hex_string = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
+        hex_string = hex_string.upper()
+        try:
+            hex_digits = "0123456789ABCDEF"
+            binary_digits = [
+                bin(hex_digits.index(digit))[2:].zfill(4) for digit in hex_string
+            ]
+            binary_string = "".join(binary_digits)
+            Colors.light_blue("\n" + "     " + dash)
+            binary = f"({binary_string})2"
+            print(
+                colr().hex("#6666ff", "     |", rgb_mode=True),
+                colr().hex("#ff0000", binary.center(50), rgb_mode=True),
+                colr().hex("#6666ff", " |", rgb_mode=True),
+            )
+            Colors.light_blue("     " + dash)   
+        except ValueError:
+            Colors.red(" \n     Error: Invalid hexadecimal input! \n")
