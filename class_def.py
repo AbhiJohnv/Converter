@@ -88,7 +88,7 @@ class Methods:
     def octal_binary():
         null = ""
         dash = null.center(58, "-")
-        Colors.light_blue("\n     Enter decimal number: ")
+        Colors.light_blue("\n     Enter octal number: ")
         octal = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
         try:
             octal_digits = list(map(int, str(octal)))
@@ -169,7 +169,7 @@ class Methods:
     def binary_to_decimal():
         null = ""
         dash = null.center(58, "-")
-        Colors.light_blue("\n     Enter decimal number: ")
+        Colors.light_blue("\n     Enter binary value : ")
         binary_number = input(colr().hex("#ff0000", "\n     > ", rgb_mode=True))
         try:
             decimal_number = 0
